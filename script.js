@@ -252,4 +252,86 @@ document.addEventListener("DOMContentLoaded", () => {
     isDragging = false;
   });
 });
+// --- INFINITE CAROUSEL LOGIC ---
+
+  const carouselData = [
+    {
+      label: "Interactive Learning Modules",
+      title: "Interactive Learning <span class='highlight-pink'>Modules</span>",
+      desc: "Self-paced, microlearning units designed for focused comprehension and retention."
+    },
+    {
+      label: "Opening module screen",
+      title: "Opening Module <span class='highlight-pink'>Screens</span>",
+      desc: "High-impact visual starts that set the tone for the entire learning journey."
+    },
+    {
+      label: "Decision-Based Scenarios",
+      title: "Decision-Based <span class='highlight-pink'>Scenarios</span>",
+      desc: "Branching paths that allow learners to see the consequences of their choices in real-time."
+    }
+  ];
+
+  let currentIdx = 0;
+
+  const slotL = document.getElementById('slotLeft');
+  const slotC = document.getElementById('slotCenter');
+  const slotR = document.getElementById('slotRight');
+  const legTitle = document.getElementById('legendTitle');
+  const legDesc = document.getElementById('legendDesc');
+
+  function updateCarousel() {
+    const total = carouselData.length;
+    
+    // Calculate indices with wrapping
+    const leftIdx = (currentIdx - 1 + total) % total;
+    const centerIdx = (currentIdx + total) % total;
+    const rightIdx = (currentIdx + 1 + total) % total;
+
+    // Update Placeholder Text
+    slotL.innerText = carouselData[leftIdx].label;
+    slotC.innerText = carouselData[centerIdx].label;
+    slotR.innerText = carouselData[rightIdx].label;
+
+    // Update Legend
+    legTitle.innerHTML = carouselData[centerIdx].title;
+    legDesc.innerText = carouselData[centerIdx].desc;
+  }
+
+  document.getElementById('carouselPrev').addEventListener('click', () => {
+    currentIdx--;
+    updateCarousel();
+  });
+
+  document.getElementById('carouselNext').addEventListener('click', () => {
+    currentIdx++;
+    updateCarousel();
+  });
+
+  // Run once to initialize
+  updateCarousel();
+
+  // --- DYNAMIC SCROLL OBSERVER ---
+
+  const scrollOptions = {
+    root: null,
+    threshold: 0.1, // Trigger when 10% is visible
+    rootMargin: "0px 0px -50px 0px" // Slight offset so it retracts just before hitting bottom
+  };
+
+  const scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      } else {
+        // This line makes it "retract" when you scroll past it
+        entry.target.classList.remove('is-visible');
+      }
+    });
+  }, scrollOptions);
+
+  // Apply to all reveal elements
+  document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+    scrollObserver.observe(el);
+  });
 
