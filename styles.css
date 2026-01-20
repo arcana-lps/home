@@ -638,6 +638,7 @@ video::-webkit-media-controls-picture-in-picture-button {
 /* Who footer */
 .who-footer {
     margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
 }
 
 .who-footer h3 {
@@ -847,6 +848,7 @@ video::-webkit-media-controls-picture-in-picture-button {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .how-right {
@@ -854,7 +856,11 @@ video::-webkit-media-controls-picture-in-picture-button {
   min-width: 0; /* prevents image/text overflow issues */
 }
 
-
+.how-agile-wrapper {
+    position: relative;
+    display: inline-block;      /* shrink-wrap to text */
+    margin: 0.15rem 0 0.25rem;  /* reuse your spacing around AGILE */
+}
 
 @media (max-width: 700px) {
   .how-framework {
@@ -941,8 +947,8 @@ video::-webkit-media-controls-picture-in-picture-button {
 }
 
 .slide2-star1 {
-    top: 80px;
-    right: 790px;
+    bottom: -12px;
+    right: -16px;
     width: 30px;
     height: 30px;
     margin-inline: auto;
@@ -963,8 +969,8 @@ video::-webkit-media-controls-picture-in-picture-button {
 }
 
 .slide2-star2 {
-    top: 115px;
-    right: 670px;
+    top: -9px;
+    left: -13px;
     width: 30px;
     height: 30px;
     margin-inline: auto;
@@ -1152,7 +1158,7 @@ video::-webkit-media-controls-picture-in-picture-button {
 /* The Transition Block */
 .section-transition-gradient {
     width: 100%;
-    height: 100px; /* Adjust height based on how long you want the fade to be */
+    height: 70px; /* Adjust height based on how long you want the fade to be */
     background: linear-gradient(
         to bottom,
         var(--clr-bg) 0%,
@@ -1163,7 +1169,7 @@ video::-webkit-media-controls-picture-in-picture-button {
 
 .section-transition-gradient2 {
     width: 100%;
-    height: 250px; /* Adjust height based on how long you want the fade to be */
+    height: 200px; /* Adjust height based on how long you want the fade to be */
     background: linear-gradient(
         to bottom,
         var(--clr-accent) 0%,
@@ -1173,16 +1179,15 @@ video::-webkit-media-controls-picture-in-picture-button {
 
 /* The Dark Section Below */
 #learning-magic {
-    background: linear-gradient(
-        to bottom,
-        var(--clr-secondary) 0%,
-        var(--clr-primary) 100%
-    );
     color: var(--clr-text-light);
     text-align: center;
-    padding-block: var(--spacing-xl);
+    padding: 0;
+    background: linear-gradient(
+        to bottom,
+        var(--clr-secondary) 75%,
+        var(--clr-primary) 100%
+    );;
 }
-
 
 #learning-magic .t-title {
     font-size: 2rem;
@@ -1194,4 +1199,10 @@ video::-webkit-media-controls-picture-in-picture-button {
 #learning-magic .italic {
     font-style: italic;
     opacity: 0.9;
+}
+
+.learning-magic-header {
+  position: relative;
+  display: inline-block;
+  margin-bottom: var(--spacing-sm);
 }
