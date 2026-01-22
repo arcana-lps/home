@@ -56,9 +56,10 @@ input, button, textarea, select {
     /* --- SPACING SYSTEM --- */
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
-    --spacing-md: 2rem;
-    --spacing-lg: 4rem;
-    --spacing-xl: 6rem;
+    /* Reduced global spacing to tighten vertical gaps between sections */
+    --spacing-md: 1rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
 
     /* --- GLOBAL TRANSITIONS --- */
     --tr-main: 0.3s ease;
@@ -1448,7 +1449,7 @@ video::-webkit-media-controls-picture-in-picture-button {
 /* --- 4. Legend (Updated: No Square, Unified Title) --- */
 .legend-container {
     display: block; /* Removed flex to ignore the space where the square was */
-    text-align: left;
+    text-align: center; /* Center the legend title and description */
     max-width: 600px;
     width: 100%;
     margin: 0 auto;
@@ -1465,14 +1466,14 @@ video::-webkit-media-controls-picture-in-picture-button {
     font-weight: inherit;         /* Matches surrounding font weight */
 }
 
-.legend-text h3 {
+.legend-text h2 {
     font-family: var(--ff-header);
     color: var(--clr-text-light);
     font-size: 1.4rem;
     margin-bottom: 8px;
 }
 
-.legend-text p {
+.legend-text h3 {
     font-family: var(--ff-body);
     color: var(--clr-text-light);
     line-height: 1.5;
@@ -1527,3 +1528,522 @@ video::-webkit-media-controls-picture-in-picture-button {
 .delay-1 { transition-delay: 0.1s; }
 .delay-2 { transition-delay: 0.2s; }
 .delay-3 { transition-delay: 0.3s; }
+/* --- VIDEO SANDWICH SECTION --- */
+
+.video-sandwich-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 100px auto;
+    gap: 50px; /* Space between lines and content */
+}
+
+.horizontal-divider {
+    width: 70%; /* "As wide as carousel but a bit smaller" */
+    height: 2px;
+    background-color: #00c18e; /* Aurora Green */
+    opacity: 0.8;
+}
+
+.video-sandwich-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 900px;
+}
+
+.video-text-box {
+    margin-bottom: 40px;
+}
+
+.video-text-box .lx-main {
+    margin-bottom: 15px;
+    /* Uses your existing lx-main styles (Erbaum font, etc.) */
+}
+
+.video-text-box .lx-body {
+    max-width: 650px;
+    margin: 0 auto;
+    /* Uses your existing lx-body styles */
+}
+
+/* Video Frame */
+.video-placeholder-frame {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #015061; /* Arcana Deep */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-label {
+    color: #fff7f7;
+    font-family: var(--ff-body);
+    opacity: 0.4;
+    font-style: italic;
+}
+
+/* Mobile: Ensure it doesn't touch screen edges */
+@media (max-width: 768px) {
+    .horizontal-divider {
+        width: 90%;
+    }
+    .video-sandwich-wrapper {
+        margin: 60px auto;
+        gap: 30px;
+    }
+}
+/* --- CONTACT SECTION (Frosted Mist Transition) --- */
+
+#contact-section {
+    background-color: #fff7f7; /* Frosted Mist */
+    /* Reduce the top padding to bring the contact header closer to the learning-magic section,
+       and add extra bottom padding so the contact area has comfortable space at the end. */
+    padding: 8px 0 80px 0; /* top right bottom left */
+    color: #002c39;           /* Midnight Summit for text on light bg */
+}
+
+/* Pull the contact text block up slightly so it sits closer to the previous section
+   without changing the section background/gradients. */
+.contact-header {
+    margin-top: -100px;
+}
+
+@media (max-width: 768px) {
+    .contact-header { margin-top: -10px; }
+}
+
+#contact-section .lx-sub {
+    color: #00c18e; /* Aurora Green */
+    margin-bottom: 10px;
+}
+
+.contact-title {
+    font-family: var(--ff-header);
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.inquiry-form {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    text-align: left; /* Headers/Labels left-aligned for the form */
+}
+
+/* Form Layout Grids */
+.form-row {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.flex-2 { flex: 2; }
+.flex-1 { flex: 1; }
+
+.form-group label {
+    font-family: var(--ff-body);
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #002c39;
+}
+
+.form-group input, 
+.form-group textarea {
+    padding: 12px;
+    border: 1px solid rgba(1, 80, 97, 0.3);
+    background-color: white;
+    font-family: var(--ff-body);
+    color: #002c39;
+    outline: none;
+    border-radius: 2px;
+}
+
+.form-group input:focus {
+    border-color: #00c18e;
+}
+
+/* Submit Button & Glow */
+.submit-inquiry-btn {
+    align-self: center;
+    background-color: #00c18e; /* Aurora Green */
+    color: #002c39;
+    padding: 15px 50px;
+    font-family: var(--ff-header);
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+}
+
+.submit-inquiry-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(0, 193, 142, 0.5); /* Glow Effect */
+    background-color: #00d9a0;
+}
+
+/* Success Note Styling */
+.success-note {
+    margin-top: 40px;
+    padding: 30px;
+    border: 2px dashed #00c18e;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .form-row { flex-direction: column; }
+}
+/* --- UPDATED CONTACT HERO HEADER --- */
+
+.contact-hero-title {
+    font-family: var(--ff-header); /* Erbaum */
+    /* Slightly smaller and thinner while remaining responsive */
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 400; /* thinner */
+    text-align: center; /* center the h2 */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--clr-primary); /* Midnight Summit */
+    margin-bottom: 10px;
+    line-height: 1.1;
+}
+
+/* Gradient effect for "ALPS" */
+.gradient-text {
+    background: linear-gradient(to right, #002c39 0%, #00c18e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+}
+
+/* Adjusted Subtitle */
+.contact-subtitle {
+    font-family: var(--ff-header);
+    font-size: 1.8rem;
+    color: var(--clr-secondary);
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+/* Ensure the description header remains clean under the new big title */
+#contact-section .lx-description-header {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    opacity: 0.85;
+    color: var(--clr-primary);
+}/* --- 1. HERO AREA (Frosted Mist) --- */
+.contact-hero-area {
+    background-color: var(--clr-bg); /* #fff7f7 */
+    padding: 80px 0 40px 0;
+    text-align: center;
+}
+
+.contact-hero-title {
+    font-family: var(--ff-header);
+    /* Smaller and thinner for a subtler heading */
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 300;
+    color: var(--clr-primary);
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/* --- 2. WORK WITH US BANNER (Aurora Green) --- */
+.work-with-us-banner {
+    background-color: var(--clr-accent); /* #00c18e */
+    padding: 60px 0;
+    text-align: center;
+}
+
+.work-title {
+    font-family: var(--ff-header);
+    font-size: 2.2rem;
+    color: #fff7f7;
+    margin-bottom: 15px;
+}
+
+.work-description {
+    font-family: var(--ff-body);
+    font-size: 1.25rem;
+    color: #fff7f7;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+/* --- 3. INPUT AREA (Arcana Deep) --- */
+.inquiry-input-area {
+    background-color: var(--clr-secondary); /* #015061 */
+    padding: 80px 0;
+}
+
+.inquiry-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.flex-xs { flex: 0 0 100px; }
+.flex-1 { flex: 1; }
+.flex-2 { flex: 2; }
+
+.form-group label {
+    display: block;
+    color: var(--clr-text-light);
+    font-family: var(--ff-header);
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 4px;
+}
+
+.form-group input:focus {
+    border-color: var(--clr-accent);
+    outline: none;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Submit Button - Aurora Green Glow */
+.submit-inquiry-btn {
+    align-self: center;
+    background-color: var(--clr-accent);
+    color: #fff7f7;
+    padding: 18px 60px;
+    font-family: var(--ff-header);
+    font-weight: 700;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.submit-inquiry-btn:hover {
+    box-shadow: 0 0 20px rgba(0, 193, 142, 0.6);
+    transform: translateY(-2px);
+}
+
+/* --- FORCE GAP REDUCTION (NUCLEAR OPTION) --- */
+
+/* 1. Pull the bottom of the Video Section up */
+.video-sandwich-wrapper {
+    margin-bottom: 0 !important;
+    padding-bottom: 20px !important; /* Only 20px space at the bottom */
+}
+
+/* 2. Pull the Contact Section container up */
+#contact-wrapper {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* 3. Pull the 'Rise Higher' area up */
+.contact-hero-area {
+    padding-top: 0 !important; 
+    margin-top: -30px !important; /* Negative margin pulls it up even further */
+    background-color: var(--clr-bg); /* Ensure background covers the gap */
+    position: relative; /* Keeps it on top */
+    z-index: 5;
+}
+
+/* 4. Ensure the Title itself has no top spacing */
+.contact-hero-title {
+    margin-top: 0 !important;
+    padding-top: 30px !important; /* Just enough so text isn't cut off */
+}
+
+/* --- HUGE SPACE UNDER 'RISE HIGHER' TITLE --- */
+.contact-hero-area {
+    padding-bottom: 100px !important; /* Massive breathing room */
+}
+
+/* --- BOXED LAYOUT CONTACT SECTION --- */
+
+/* 1. The Main Canvas (Frosted Mist Everywhere) */
+#contact-wrapper,
+.contact-hero-area,
+.work-with-us-banner,
+.inquiry-input-area {
+    background-color: var(--clr-bg); /* Frosted Mist background for the whole section */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+/* 2. Spacing Tweaks */
+.contact-hero-area {
+    padding-top: 50px;
+    padding-bottom: 30px; /* Space between "Rise Higher" and the green box */
+    text-align: center;
+}
+
+.work-with-us-banner {
+    padding-bottom: 20px; /* Space between the green box and the form box */
+    display: flex;
+    justify-content: center; /* Centers the cute box */
+}
+
+.inquiry-input-area {
+    padding-bottom: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+/* --- THE CUTE LITTLE BOX (Work With Us) --- */
+.work-with-us-banner .container-70 {
+    /* "Surround the text only" */
+    width: fit-content; 
+    max-width: 90%; 
+    
+    /* Box Styling */
+    background-color: var(--clr-accent); /* Aurora Green */
+    border-radius: 15px; /* Fully rounded/cute corners */
+    padding: 10px 60px;  /* Space inside the pill shape */
+    margin: 0 auto;
+    
+    /* Center text inside */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Remove default margins on the title so it fits the box perfectly */
+.work-title {
+    margin: 0;
+    line-height: 1;
+}
+
+
+/* --- THE FORM BOX (Input Area) --- */
+.inquiry-input-area .container-70 {
+    /* Box Styling */
+    background-color: var(--clr-secondary); /* Arcana Deep */
+    border-radius: 40px; /* Soft corners */
+    padding: 60px;       /* Breathing room inside the dark box */
+    
+    /* Ensure it doesn't touch screen edges on small screens */
+    width: 75%;
+    max-width: 1000px;
+    margin: 0 auto;
+    
+    /* Shadow for depth (Optional, makes it pop off the mist background) */
+    box-shadow: 0 10px 30px rgba(0, 44, 57, 0.1);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .inquiry-input-area .container-70 {
+        width: 90%;
+        padding: 30px; /* Smaller padding on mobile */
+    }
+    
+    .work-with-us-banner .container-70 {
+        padding: 10px 30px;
+        width: 80%;
+    }
+}
+
+.form-footer-msg {
+    color: white;
+    text-align: center;
+    margin-top: 30px;
+    font-family: var(--ff-header);
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+/* --- CONNECTING THE BOXES (The "Tab" Look) --- */
+
+/* 1. The Green Section Wrapper */
+.work-with-us-banner {
+    padding-bottom: 0 !important; /* Remove space below the green area */
+    margin-bottom: 0 !important;
+    background-color: var(--clr-bg); /* Ensure it's the mist color */
+    
+    /* Center and ensure it sits above the blue box */
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 10; 
+}
+
+/* 2. The Green Box Itself (The Pill) */
+.work-with-us-banner .container-70 {
+    /* Push it down just enough to "kiss" the blue box */
+    margin-bottom: 0px !important; 
+    
+    /* Keep your existing style */
+    width: fit-content;
+    background-color: var(--clr-accent);
+    border-radius: 20px;
+    padding: 30px 60px;
+    
+    /* Ensure it stays strictly on top */
+    position: relative;
+    z-index: 20; 
+}
+
+/* 3. The Blue Section Wrapper */
+.inquiry-input-area {
+    padding-top: 0 !important; /* Remove space above the blue area */
+    margin-top: 0 !important;
+    background-color: var(--clr-bg);
+}
+
+/* 4. The Blue Box Itself */
+.inquiry-input-area .container-70 {
+    /* No changes to corners or color, just position */
+    margin-top: 0 !important;
+    position: relative;
+    z-index: 5;
+    
+    /* Keep your existing look */
+    background-color: var(--clr-secondary);
+    border-radius: 20px;
+    padding: 60px;
+}
+/* --- REAL VIDEO PLAYER STYLING --- */
+.main-video-player {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px; /* Slightly rounded corners look modern */
+    box-shadow: 0 15px 40px rgba(0, 44, 57, 0.3); /* Deep shadow */
+    background-color: #000; /* Black background while loading */
+    outline: none;
+    display: block;
+}

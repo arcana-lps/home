@@ -335,3 +335,40 @@ document.addEventListener("DOMContentLoaded", () => {
     scrollObserver.observe(el);
   });
 
+// --- CONTACT FORM BACKEND CONNECTION ---
+const inquiryForm = document.getElementById('inquiry-form');
+const formSuccess = document.getElementById('form-success');
+const submitBtn = document.querySelector('.submit-inquiry-btn');
+
+// 👇 PASTE YOUR LONG GOOGLE WEB APP URL INSIDE THESE QUOTES 👇
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwqrr15K1ZLlssChMnOQDZ8qBtaPfBg-qteZNZ8bhiRnsIQD4eIal4BvetbR6mfvnXa6g/exec";
+
+if (inquiryForm) {
+  inquiryForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    // 1. Show 'Sending...' status
+    if (submitBtn) {
+        submitBtn.innerText = "Sending...";
+        submitBtn.style.opacity = "0.7";
+        submitBtn.disabled = true;
+    }
+
+    // 2. Collect the data
+    let requestBody = new FormData(inquiryForm);
+
+    // 3. Send it to Google Sheets
+    fetch(SCRIPT_URL, { method: 'POST', body: requestBody })
+      .then(response => {
+         // Success!
+         inquiryForm.style.display = 'none'; 
+         if (formSuccess) formSuccess.style.display = 'block'; 
+         console.log('Success!', response);
+      })
+      .catch(error => {
+         // Error
+         console.error('Error!', error.message);
+         if (submitBtn) submitBtn.innerText = "Error. Refresh Page.";
+      });
+  });
+}
