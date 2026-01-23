@@ -316,7 +316,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const scrollOptions = {
     root: null,
     threshold: 0.1, // Trigger when 10% is visible
-    rootMargin: "0px 0px -50px 0px" // Slight offset so it retracts just before hitting bottom
+    rootMargin: "0px 0px -200px 0px" // Slight offset so it retracts just before hitting bottom
   };
 
   const scrollObserver = new IntersectionObserver((entries) => {
