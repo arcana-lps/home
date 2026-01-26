@@ -343,16 +343,7 @@ body {
     width: 100%;
     height: 100%;
     background-color: var(--clr-text-light);
-    clip-path: polygon(
-    50% 0%,
-    58% 42%,
-    100% 50%,
-    58% 58%,
-    50% 100%,
-    42% 58%,
-    0% 50%,
-    42% 42%
-    );
+    clip-path: polygon(50% 0%, 54% 46%, 100% 50%, 54% 54%, 50% 100%, 46% 54%, 0% 50%, 46% 46%);
     z-index: 2;
 }
 
@@ -1154,11 +1145,6 @@ video::-webkit-media-controls-picture-in-picture-button {
     transform: none !important;
 }
 
-.wmu-panel-inner .t-body {
-    text-align: left;
-    max-width: 95%;
-}
-
 /* Mobile: remove indent to save space */
 @media (max-width: 600px) {
     .wmu-panel-inner {
@@ -1524,27 +1510,19 @@ video::-webkit-media-controls-picture-in-picture-button {
 }
 /* --- UNIFIED SCROLL ANIMATION (Matches site behavior) --- */
 
-/* Base state: off-screen + transparent */
 .reveal-on-scroll {
     opacity: 0;
-    transform: translateY(20px);
-    visibility: visible; /* keep visible so fade-out can be seen */
-    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(20px); /* Slightly shorter distance to feel snappier */
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    visibility: hidden;
 }
 
-/* Enter animation */
+/* This class is added when in view, and removed when out of view */
 .reveal-on-scroll.is-visible {
     opacity: 1;
     transform: translateY(0);
+    visibility: visible;
 }
-
-/* Exit animation – make the fade-out feel a bit faster / snappier */
-.reveal-on-scroll:not(.is-visible) {
-    transition: opacity 0.6s ease-in,
-                transform 0.6s ease-in;
-}
-
 
 /* Staggering for the carousel cards */
 .delay-1 { transition-delay: 0.1s; }
@@ -1745,6 +1723,15 @@ video::-webkit-media-controls-picture-in-picture-button {
     line-height: 1.1;
 }
 
+/* Gradient effect for "ALPS" */
+.gradient-text {
+    background: linear-gradient(to right, #002c39 0%, #00c18e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+}
+
 /* Adjusted Subtitle */
 .contact-subtitle {
     font-family: var(--ff-header);
@@ -1758,16 +1745,14 @@ video::-webkit-media-controls-picture-in-picture-button {
 #contact-section .lx-description-header {
     max-width: 800px;
     margin: 0 auto;
+    font-size: 1.2rem;
     opacity: 0.85;
     color: var(--clr-primary);
 }/* --- 1. HERO AREA (Frosted Mist) --- */
 .contact-hero-area {
+    background-color: var(--clr-bg); /* #fff7f7 */
     padding: 80px 0 40px 0;
     text-align: center;
-}
-
-.contact-hero-area .t-subtitle{
-    padding-top: 40px;
 }
 
 .contact-hero-title {
@@ -1783,12 +1768,13 @@ video::-webkit-media-controls-picture-in-picture-button {
 /* --- 2. WORK WITH US BANNER (Aurora Green) --- */
 .work-with-us-banner {
     background-color: var(--clr-accent); /* #00c18e */
+    padding: 60px 0;
     text-align: center;
 }
 
 .work-title {
     font-family: var(--ff-header);
-    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-size: 2.2rem;
     color: #fff7f7;
     margin-bottom: 15px;
 }
@@ -1817,7 +1803,6 @@ video::-webkit-media-controls-picture-in-picture-button {
 .form-row {
     display: flex;
     gap: 20px;
-    position: relative;
 }
 
 .flex-xs { flex: 0 0 100px; }
@@ -1945,10 +1930,7 @@ video::-webkit-media-controls-picture-in-picture-button {
     
     /* Box Styling */
     background-color: var(--clr-accent); /* Aurora Green */
-    border-top-left-radius: 15px; /* Fully rounded/cute corners */
-    border-top-right-radius: 15px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
+    border-radius: 15px; /* Fully rounded/cute corners */
     padding: 10px 60px;  /* Space inside the pill shape */
     margin: 0 auto;
     
@@ -1999,11 +1981,11 @@ video::-webkit-media-controls-picture-in-picture-button {
     text-align: center;
     margin-top: 30px;
     font-family: var(--ff-header);
+    font-size: 1.2rem;
+    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    display: inline-block;
-    white-space: nowrap;       
-    font-size: clamp(0.8rem, 2.5vw, 1.3rem);
+    letter-spacing: 2px;
+    opacity: 0.8;
 }
 /* --- CONNECTING THE BOXES (The "Tab" Look) --- */
 
@@ -2028,6 +2010,7 @@ video::-webkit-media-controls-picture-in-picture-button {
     /* Keep your existing style */
     width: fit-content;
     background-color: var(--clr-accent);
+    border-radius: 20px;
     padding: 30px 60px;
     
     /* Ensure it stays strictly on top */
@@ -2064,37 +2047,119 @@ video::-webkit-media-controls-picture-in-picture-button {
     outline: none;
     display: block;
 }
+/* =========================================
+   MOBILE RESPONSIVENESS
+   (Paste this at the very bottom of styles.css)
+   ========================================= */
 
-.footer-star {
-    top: 20px;
-    left: -30px;
-    width: 34px;
-    height: 34px;
-    rotate: 68deg;
-}
+@media (max-width: 768px) {
 
-.footer-star .star-front {
-    background-color: var(--clr-accent);
-}
+    /* --- 1. TYPOGRAPHY ADJUSTMENTS --- */
+    :root {
+        /* Scale down the huge fonts for phone screens */
+        --fs-title: 2rem;    
+        --fs-subtitle: 1.5rem;
+        --fs-h1: 1.35rem;
+        --fs-h3: 1.5rem;
+    }
 
-.form-footer-wrapper {
-  position: relative;       /* anchor for the star */
-  align-self: center;
-}
+    /* Prevent long words from breaking layout */
+    h1, h2, h3, p {
+        word-wrap: break-word;
+    }
 
-.work-wrapper {
-  position: relative;       /* anchor for the star */
-  align-self: center;
-}
+    /* --- 2. GLOBAL LAYOUT --- */
+    .container, 
+    .container-70, 
+    .container-90 {
+        width: 92% !important; /* Use almost full width on mobile */
+        max-width: 92% !important;
+        padding-inline: 15px;
+    }
 
-.work-star {
-    top: 13px;
-    right: -24px;
-    width: 34px;
-    height: 34px;
-    rotate: 69deg;
-}
+    section {
+        padding-block: 40px; /* Reduce vertical gaps */
+    }
 
-.work-star .star-front {
-    background-color: var(--clr-secondary);
+    /* --- 3. HERO SECTION --- */
+    #hero {
+        padding-top: 140px; /* Less top space needed on mobile */
+        padding-bottom: 40px;
+        background-attachment: scroll; /* Fixes mobile background jitter */
+        height: auto;
+        min-height: auto;
+    }
+
+    .t-title br {
+        display: none; /* Let text wrap naturally on small screens */
+    }
+
+    .banner-text {
+        font-size: 0.9rem; /* Make the banner text readable */
+        line-height: 1.6;
+    }
+
+    /* --- 4. "WHAT WE DO" SECTION --- */
+    .what-we-do-layout {
+        flex-direction: column; /* Stack text on top of video */
+        gap: 30px;
+        margin: 0 !important; /* Reset custom margins */
+    }
+
+    .what-we-do-text {
+        flex: none;
+        width: 100%;
+        text-align: center; /* Center align text for better mobile balance */
+    }
+
+    .what-bullets {
+        text-align: left; /* Keep bullets left-aligned */
+        margin: 0 auto 20px auto; /* Center the list block */
+    }
+
+    .what-we-do-media {
+        width: 100%;
+    }
+
+    /* --- 5. "WHO IT'S FOR" (GRID) --- */
+    .who-grid {
+        grid-template-columns: 1fr !important; /* Force single column */
+        gap: 20px;
+    }
+
+    /* --- 6. CONTACT FORM (THE "PILL" & BOX) --- */
+    
+    /* The Green Pill Title */
+    .work-with-us-banner .container-70 {
+        width: 85% !important; 
+        padding: 15px 20px !important;
+        border-radius: 30px;
+        margin-bottom: -20px !important; /* Adjust overlap for mobile */
+    }
+
+    .work-title {
+        font-size: 1.5rem;
+    }
+
+    /* The Blue Form Box */
+    .inquiry-input-area .container-70 {
+        width: 95% !important; /* Maximize width */
+        padding: 50px 20px 30px 20px !important; /* More top padding to clear the pill */
+    }
+
+    /* Stack Form Inputs */
+    .form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .flex-1, .flex-2, .flex-xs {
+        width: 100%; /* Full width inputs */
+    }
+
+    /* Adjust Submit Button */
+    .submit-inquiry-btn {
+        width: 100%;
+        margin-top: 10px;
+    }
 }
